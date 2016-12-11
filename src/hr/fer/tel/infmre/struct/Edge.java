@@ -7,9 +7,9 @@ public class Edge implements Comparable<Edge> {
 
 	private final int u;
 	private final int v;
-	private double w;
+	private final int w;
 
-	public Edge(int u, int v, double w) {
+	Edge(int u, int v, int w) {
 		if (u < 0) {
 			throw new IllegalArgumentException("vertex can't be negative");
 		}
@@ -23,7 +23,7 @@ public class Edge implements Comparable<Edge> {
 
 	@Override
 	public int compareTo(Edge e) {
-		return Double.compare(w, e.w);
+		return Integer.compare(w, e.w);
 	}
 
 	@Override
@@ -43,17 +43,14 @@ public class Edge implements Comparable<Edge> {
 		if (v != edge.v) {
 			return false;
 		}
-		return Double.compare(edge.w, w) == 0;
+		return w == edge.w;
 	}
 
 	@Override
 	public int hashCode() {
-		int result;
-		long temp;
-		result = u;
+		int result = u;
 		result = 31 * result + v;
-		temp = Double.doubleToLongBits(w);
-		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		result = 31 * result + w;
 		return result;
 	}
 
@@ -71,7 +68,12 @@ public class Edge implements Comparable<Edge> {
 		throw new IllegalArgumentException("Edge doesn't contain given vertex " + x);
 	}
 
-	public double getWeight() {
+	public int getWeight() {
 		return w;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%d-%d [%d]", u, v, w);
 	}
 }

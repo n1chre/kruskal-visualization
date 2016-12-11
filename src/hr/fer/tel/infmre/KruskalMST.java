@@ -6,6 +6,8 @@ import hr.fer.tel.infmre.struct.UnionFind;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by fhrenic on 06/12/2016.
@@ -18,10 +20,7 @@ public class KruskalMST {
 	public KruskalMST(Graph g) {
 
 		mst = new LinkedList<>();
-
-		List<Edge> edges = g.getEdges();
-		edges.sort(null);
-
+		Set<Edge> edges = new TreeSet<>(g.getEdges());
 		UnionFind uf = new UnionFind(g.getV());
 
 		// run greedy algorithm
