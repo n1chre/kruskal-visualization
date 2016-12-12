@@ -4,10 +4,9 @@ import hr.fer.tel.infmre.struct.Edge;
 import hr.fer.tel.infmre.struct.Graph;
 import hr.fer.tel.infmre.struct.UnionFind;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Created by fhrenic on 06/12/2016.
@@ -20,7 +19,8 @@ public class KruskalMST {
 	public KruskalMST(Graph g) {
 
 		mst = new LinkedList<>();
-		Set<Edge> edges = new TreeSet<>(g.getEdges());
+		List<Edge> edges = new ArrayList<>(g.getEdges());
+		edges.sort(null);
 		UnionFind uf = new UnionFind(g.getV());
 
 		// run greedy algorithm

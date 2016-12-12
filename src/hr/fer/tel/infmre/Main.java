@@ -1,8 +1,8 @@
 package hr.fer.tel.infmre;
 
-import hr.fer.tel.infmre.struct.Edge;
 import hr.fer.tel.infmre.struct.Graph;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
 
 		InputStream stream;
 		if (args.length > 0) {
@@ -37,10 +37,9 @@ public class Main {
 
 		// calculate mst
 		KruskalMST mst = new KruskalMST(G);
-		Iterable<Edge> edges = mst.getMST();
 
-		GUI gui = new GUI(G, edges);
-		gui.display();
+		GUI g = new GUI(G.getEdges(), mst.getMST());
+		SwingUtilities.invokeLater(g::display);
 	}
 
 }
