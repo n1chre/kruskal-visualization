@@ -1,7 +1,5 @@
 package hr.fer.tel.infmre;
 
-import hr.fer.tel.infmre.struct.Graph;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;

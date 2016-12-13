@@ -1,4 +1,4 @@
-package hr.fer.tel.infmre.struct;
+package hr.fer.tel.infmre;
 
 /**
  * Ova klasa predstavlja granu u neusmjerenom grafu.

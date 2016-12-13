@@ -1,9 +1,5 @@
 package hr.fer.tel.infmre;
 
-import hr.fer.tel.infmre.struct.Edge;
-import hr.fer.tel.infmre.struct.Graph;
-import hr.fer.tel.infmre.struct.UnionFind;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

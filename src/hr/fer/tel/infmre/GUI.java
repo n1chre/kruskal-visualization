@@ -19,13 +19,13 @@ class GUI extends JFrame {
 	private Viewer viewer;
 
 	private final Graph graph;
-	private final List<hr.fer.tel.infmre.struct.Edge> allEdges;
-	private final Set<hr.fer.tel.infmre.struct.Edge> mstEdges;
-	private final Map<hr.fer.tel.infmre.struct.Edge, Edge> mapper = new HashMap<>();
+	private final List<hr.fer.tel.infmre.Edge> allEdges;
+	private final Set<hr.fer.tel.infmre.Edge> mstEdges;
+	private final Map<hr.fer.tel.infmre.Edge, Edge> mapper = new HashMap<>();
 	private int index;
 	private final int n;
 
-	GUI(Iterable<hr.fer.tel.infmre.struct.Edge> allEdges, Iterable<hr.fer.tel.infmre.struct.Edge> mstEdges) {
+	GUI(Iterable<hr.fer.tel.infmre.Edge> allEdges, Iterable<hr.fer.tel.infmre.Edge> mstEdges) {
 
 		labels = new ArrayList<>();
 
@@ -80,7 +80,7 @@ class GUI extends JFrame {
 		edgePanel.add(btns, BorderLayout.SOUTH);
 
 		JPanel panel = new JPanel(new GridLayout(n, 1));
-		for (hr.fer.tel.infmre.struct.Edge e : allEdges) {
+		for (hr.fer.tel.infmre.Edge e : allEdges) {
 			JLabel l = new JLabel(e.toString());
 			labels.add(l);
 			panel.add(l);
@@ -103,7 +103,7 @@ class GUI extends JFrame {
 	private void fillGraph() {
 		int edgeIndex = 0;
 
-		for (hr.fer.tel.infmre.struct.Edge e : allEdges) {
+		for (hr.fer.tel.infmre.Edge e : allEdges) {
 			int u = e.getEither();
 			int v = e.getOther(u);
 
@@ -122,7 +122,7 @@ class GUI extends JFrame {
 	}
 
 	private void markEdge(boolean mark) {
-		hr.fer.tel.infmre.struct.Edge edge = allEdges.get(index);
+		hr.fer.tel.infmre.Edge edge = allEdges.get(index);
 
 		String color, size;
 		Color jcolor;

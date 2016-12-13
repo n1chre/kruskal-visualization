@@ -1,4 +1,4 @@
-package hr.fer.tel.infmre.struct;
+package hr.fer.tel.infmre;
 
 /**
  * Implementacija UnionFind strukture sa skraćivanjem puta i težinskim spajanjem.

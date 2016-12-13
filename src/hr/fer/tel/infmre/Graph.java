@@ -1,4 +1,4 @@
-package hr.fer.tel.infmre.struct;
+package hr.fer.tel.infmre;
 
 import java.io.BufferedReader;
 import java.io.IOException;
