@@ -12,19 +12,35 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * Created by fhrenic on 06/12/2016.
+ * Klasa predstavlja neusmjereni graf.
+ * Čvorovi se označavaju nenegativnim brojevima.
  */
 public class Graph {
 
-	public static void main(String[] args) {
-		String line = "41, 22, 33, d";
-	}
-
+	/**
+	 * Uzorak za pronalaženje brojeva.
+	 */
 	private static final Pattern NUMBER_PATTERN = Pattern.compile("(\\d+)");
 
+	/**
+	 * Broj čvorova u grafu.
+	 */
 	private final int V;
-	private List<Edge> edges = new LinkedList<>();
 
+	/**
+	 * Lista grana koje se nalaze u grafu
+	 */
+	private final List<Edge> edges;
+
+	/**
+	 * Učitava graf iz danog toka podataka.
+	 * Prva linija treba sadržavati (minimalno) jedan broj koji predstavlja broj čvorova u grafu.
+	 * Sve ostale linije trebaju sadržavati (minimalno) tri broja, koji predstavljaju 2 čvora koje
+	 * grana spaja i njezinu tezinu.
+	 *
+	 * @param stream tok podataka
+	 * @return učitani graf
+	 */
 	public static Graph fromStream(InputStream stream) {
 
 		Graph G;
@@ -68,34 +84,62 @@ public class Graph {
 	}
 
 	/**
-	 * Number of nodes. Nodes can be from 0 to V-1
+	 * Stvara prazan graf sa zadanim brojem čvorova. Čvorovi mogu biti u rasponu [0,V-1]
 	 *
-	 * @param V number of nodes
+	 * @param V broj čvorova
 	 */
-	public Graph(int V) {
+	private Graph(int V) {
 		this.V = V;
 		edges = new LinkedList<>();
 	}
 
+	/**
+	 * Vraća kolekciju svih grana u ovom grafu
+	 *
+	 * @return sve grane
+	 */
 	public Collection<Edge> getEdges() {
 		return edges;
 	}
 
-	public void addEdge(int u, int v, int w) {
+	/**
+	 * Dodaje novu granu u graf sa zadanim čvorovima i težinom
+	 *
+	 * @param u prvi čvor
+	 * @param v drugi čvor
+	 * @param w težina
+	 */
+	private void addEdge(int u, int v, int w) {
 		validateVertex(u);
 		validateVertex(v);
+		if (w < 0) {
+			throw new IllegalArgumentException("Weight can't be negative");
+		}
 		edges.add(new Edge(Math.min(u, v), Math.max(u, v), w));
 	}
 
+	/**
+	 * Vraća broj čvorova u grafu
+	 *
+	 * @return broj čvorova
+	 */
 	public int getV() {
 		return V;
 	}
 
+	/**
+	 * @return tekstualna reprezentacija grafa
+	 */
 	@Override
 	public String toString() {
 		return edges.stream().map(Edge::toString).collect(Collectors.joining("\n"));
 	}
 
+	/**
+	 * Ako je čvor negativan ili veći od maksimalnog broja, baca iznimku.
+	 *
+	 * @param v čvor
+	 */
 	private void validateVertex(int v) {
 		if (v < 0 || v >= V) {
 			throw new IllegalArgumentException("Vertex index out of bounds, should be between 0 and " + (V - 1));
