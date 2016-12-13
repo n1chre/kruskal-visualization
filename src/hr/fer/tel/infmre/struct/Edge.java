@@ -69,13 +69,7 @@ public class Edge implements Comparable<Edge> {
 
 		Edge edge = (Edge) o;
 
-		if (u != edge.u) {
-			return false;
-		}
-		if (v != edge.v) {
-			return false;
-		}
-		return w == edge.w;
+		return u == edge.u && v == edge.v && w == edge.w;
 	}
 
 	/**
