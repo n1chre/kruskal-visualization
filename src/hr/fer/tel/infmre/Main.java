@@ -237,10 +237,10 @@ class Main extends JFrame {
 			String vid = Integer.toString(v);
 			String eid = Integer.toString(++edgeIndex);
 
+			Edge ed = graph.addEdge(eid, uid, vid);
 			graph.getNode(uid).addAttribute("ui.label", u);
 			graph.getNode(vid).addAttribute("ui.label", v);
 
-			Edge ed = graph.addEdge(eid, uid, vid);
 			ed.addAttribute("ui.label", e.getWeight());
 			ed.addAttribute("layout.weight", e.getWeight());
 
