@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by fhrenic on 06/12/2016.
+ * Implementacija Kruskal algoritma za nalaženje najmanjeg razapinjućeg stabla u grafu.
  */
 public class KruskalMST {
 
 	private double weight;
 	private final List<Edge> mst;
 
-	public KruskalMST(Graph g) {
+	KruskalMST(Graph g) {
 
 		mst = new LinkedList<>();
 		List<Edge> edges = new ArrayList<>(g.getEdges());

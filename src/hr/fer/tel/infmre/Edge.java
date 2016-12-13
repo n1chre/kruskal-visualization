@@ -90,7 +90,7 @@ public class Edge implements Comparable<Edge> {
 	 *
 	 * @return neki čvor
 	 */
-	public int getEither() {
+	int getEither() {
 		return u;
 	}
 
@@ -100,7 +100,7 @@ public class Edge implements Comparable<Edge> {
 	 * @param x neki od čvorova na grani
 	 * @return drugi čvor
 	 */
-	public int getOther(int x) {
+	int getOther(int x) {
 		if (u == x) {
 			return v;
 		}
@@ -115,7 +115,7 @@ public class Edge implements Comparable<Edge> {
 	 *
 	 * @return težina
 	 */
-	public int getWeight() {
+	int getWeight() {
 		return w;
 	}
 

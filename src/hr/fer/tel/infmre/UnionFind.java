@@ -5,7 +5,7 @@ package hr.fer.tel.infmre;
  * Union/Find funkcije imaju složenost O(log*N) gdje je N broj čvorova u strukturi,
  * a log* funkcija koja je manja od 5 za sve normalne vrijednosti N (N<2^65536).
  */
-public class UnionFind {
+class UnionFind {
 
 	/**
 	 * ID čvora kojem pripada čvor na i-tom mjestu
@@ -22,7 +22,7 @@ public class UnionFind {
 	 *
 	 * @param n broj čvorova
 	 */
-	public UnionFind(int n) {
+	UnionFind(int n) {
 		id = new int[n];
 		size = new int[n];
 		for (int i = 0; i < n; i++) {
@@ -36,7 +36,7 @@ public class UnionFind {
 	 * @param y drugi čvor
 	 * @return true ako su čvorovi spojeni, false inače
 	 */
-	public boolean areConnected(int x, int y) {
+	boolean areConnected(int x, int y) {
 		return find(x) == find(y);
 	}
 
@@ -46,7 +46,7 @@ public class UnionFind {
 	 * @param x prvi čvor
 	 * @param y drugi čvor
 	 */
-	public void union(int x, int y) {
+	void union(int x, int y) {
 		int rootX = find(x);
 		int rootY = find(y);
 

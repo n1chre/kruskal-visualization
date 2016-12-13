@@ -41,7 +41,7 @@ public class Graph {
 	 * @param stream tok podataka
 	 * @return učitani graf
 	 */
-	public static Graph fromStream(InputStream stream) {
+	static Graph fromStream(InputStream stream) {
 
 		Graph G;
 		Matcher m;
@@ -98,7 +98,7 @@ public class Graph {
 	 *
 	 * @return sve grane
 	 */
-	public Collection<Edge> getEdges() {
+	Collection<Edge> getEdges() {
 		return edges;
 	}
 
@@ -123,7 +123,7 @@ public class Graph {
 	 *
 	 * @return broj čvorova
 	 */
-	public int getV() {
+	int getV() {
 		return V;
 	}
 
