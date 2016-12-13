@@ -7,13 +7,19 @@ import java.util.List;
 /**
  * Implementacija Kruskal algoritma za nalaženje najmanjeg razapinjućeg stabla u grafu.
  */
-public class KruskalMST {
+class KruskalMST {
 
-	private double weight;
+	/**
+	 * Lista grana koje predstavljaju najmanje razapinjuće stablo danog grafa
+	 */
 	private final List<Edge> mst;
 
+	/**
+	 * Pokreće Kruskal algoritam na danom grafu
+	 *
+	 * @param g graf
+	 */
 	KruskalMST(Graph g) {
-
 		mst = new LinkedList<>();
 		List<Edge> edges = new ArrayList<>(g.getEdges());
 		edges.sort(null);
@@ -27,17 +33,14 @@ public class KruskalMST {
 			if (!uf.areConnected(u, v)) {
 				uf.union(u, v);
 				mst.add(e);
-				weight += e.getWeight();
 			}
 		}
-
 	}
 
-	public double getWeight() {
-		return weight;
-	}
-
-	public Iterable<Edge> getMST() {
+	/**
+	 * @return grane najmanjeg razapinjućeg stabla
+	 */
+	Iterable<Edge> getMST() {
 		return mst;
 	}
 }
