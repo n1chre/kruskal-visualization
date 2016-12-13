@@ -1,18 +1,28 @@
 package hr.fer.tel.infmre.struct;
 
 /**
- * Implementation of a weighted quick union UF with path compression.
- * M union-find operations on N objects takes ~ M log*(N)
- * Created by fhrenic on 06/12/2016.
+ * Implementacija UnionFind strukture sa skraćivanjem puta i težinskim spajanjem.
+ * Union/Find funkcije imaju složenost O(log*N) gdje je N broj čvorova u strukturi,
+ * a log* funkcija koja je manja od 5 za sve normalne vrijednosti N (N<2^65536).
  */
 public class UnionFind {
 
+	/**
+	 * ID čvora kojem pripada čvor na i-tom mjestu
+	 */
 	private final int[] id;
-	private final int[] size;
-	private int count;
 
+	/**
+	 * Veličina stabla ispod čvora na i-tom mjestu
+	 */
+	private final int[] size;
+
+	/**
+	 * Stvara novu strukturu od n čvorova.
+	 *
+	 * @param n broj čvorova
+	 */
 	public UnionFind(int n) {
-		count = n;
 		id = new int[n];
 		size = new int[n];
 		for (int i = 0; i < n; i++) {
@@ -22,30 +32,19 @@ public class UnionFind {
 	}
 
 	/**
-	 * Get number of disjoint components in this structure.
-	 *
-	 * @return number of components
-	 */
-	public int getCount() {
-		return count;
-	}
-
-	/**
-	 * Return true if the two sites are in the same component
-	 *
-	 * @param x first site
-	 * @param y second site
-	 * @return true if they are areConnected
+	 * @param x prvi čvor
+	 * @param y drugi čvor
+	 * @return true ako su čvorovi spojeni, false inače
 	 */
 	public boolean areConnected(int x, int y) {
 		return find(x) == find(y);
 	}
 
 	/**
-	 * Connects two sites if they are disjoint.
+	 * Spaja 2 čvora ako nisu spojeni
 	 *
-	 * @param x first site
-	 * @param y second site
+	 * @param x prvi čvor
+	 * @param y drugi čvor
 	 */
 	public void union(int x, int y) {
 		int rootX = find(x);
@@ -63,15 +62,13 @@ public class UnionFind {
 			id[rootY] = rootX;
 			size[rootX] += size[rootY];
 		}
-
-		--count;
 	}
 
 	/**
-	 * Find root of site x using path compression
+	 * Nalazi korijen stabla u kojem se nalazi dani čvora te usput radi skraćivanje puta.
 	 *
-	 * @param x site
-	 * @return root of x
+	 * @param x čvor
+	 * @return korijen čvora
 	 */
 	private int find(int x) {
 		int n = id.length;
