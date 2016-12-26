@@ -69,6 +69,16 @@ class Main extends JFrame {
 	private final List<JLabel> labels;
 
 	/**
+	 * Težina trenutnog stabla
+	 */
+	private int weight;
+
+	/**
+	 * Za prikaz težine
+	 */
+	private final JLabel weightLabel;
+
+	/**
 	 * Viewer koji sadrži prikaz grafa
 	 */
 	private Viewer viewer;
@@ -109,6 +119,8 @@ class Main extends JFrame {
 	private Main(Iterable<hr.fer.tel.infmre.Edge> allEdges, Iterable<hr.fer.tel.infmre.Edge> mstEdges) {
 
 		labels = new ArrayList<>();
+		weight = 0;
+		weightLabel = new JLabel("Težina = 0");
 
 		this.allEdges = new ArrayList<>();
 		allEdges.forEach(this.allEdges::add);
@@ -167,12 +179,13 @@ class Main extends JFrame {
 		edgePanel.add(btns, BorderLayout.SOUTH);
 
 		// create labels
-		JPanel panel = new JPanel(new GridLayout(n, 1));
+		JPanel panel = new JPanel(new GridLayout(n+1, 1));
 		for (hr.fer.tel.infmre.Edge e : allEdges) {
 			JLabel l = new JLabel(e.toString());
 			labels.add(l);
 			panel.add(l);
 		}
+		panel.add(weightLabel);
 		edgePanel.add(new JScrollPane(panel), BorderLayout.NORTH);
 		contentPane.add(edgePanel, BorderLayout.EAST);
 
@@ -204,6 +217,7 @@ class Main extends JFrame {
 			if (mstEdges.contains(edge)) {
 				jcolor = Color.green;
 				color = "green";
+				weight += edge.getWeight();
 			} else {
 				jcolor = Color.red;
 				color = "red";
@@ -213,10 +227,15 @@ class Main extends JFrame {
 			jcolor = Color.black;
 			color = "black";
 			size = "1";
+			if (mstEdges.contains(edge)) {
+				weight -= edge.getWeight();
+			}
 		}
 
 		JLabel label = labels.get(index);
 		label.setForeground(jcolor);
+
+		weightLabel.setText("Težina = " + weight);
 
 		Edge e = mapper.get(edge);
 		e.setAttribute("ui.style", "fill-color: " + color + ";");

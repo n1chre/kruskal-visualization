@@ -3,7 +3,7 @@ package hr.fer.tel.infmre;
 /**
  * Implementacija UnionFind strukture sa skraćivanjem puta i težinskim spajanjem.
  * Union/Find funkcije imaju složenost O(log*N) gdje je N broj čvorova u strukturi,
- * a log* funkcija koja je manja od 5 za sve normalne vrijednosti N (N<2^65536).
+ * a log* funkcija koja je manja od 5 za sve normalne vrijednosti N (N manji od 2^65536).
  */
 class UnionFind {
 
