@@ -8,4 +8,8 @@ The main class is *Main.java*. If you pass an argument, then the graph definitio
 Number of nodes
 
 List of edges (node1, node2, weight)
- 
+
+## Example run
+`java -jar kruskal.jar graph-example.txt`
+
+This will read graph stored in .txt file and run the program.
