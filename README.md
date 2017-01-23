@@ -13,3 +13,11 @@ List of edges (node1, node2, weight)
 `java -jar kruskal.jar graph-example.txt`
 
 This will read graph stored in .txt file and run the program.
+
+## Screenshots
+
+#### Starting window
+![Starting window](images/start.png)
+
+#### Found MST
+![MST](images/end.png)
