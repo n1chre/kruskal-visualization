@@ -76,12 +76,15 @@ class UnionFind {
 			throw new IndexOutOfBoundsException("index " + x + " not between 0 and " + (n - 1));
 		}
 
-		while (x != id[x]) {
-			id[x] = id[id[x]]; // path compression: makes tree almost flat
-			x = id[x];
-		}
-
-		return x;
+		return find_(x);
+	}
+	
+	/**
+	 * path compression: makes tree almost flat
+	 */
+	private int find_(int x){
+		if (x != id[x]) id[x] = find_(id[x]);
+		return id[x];
 	}
 
 }
